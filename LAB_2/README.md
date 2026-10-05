@@ -1,6 +1,6 @@
 # LAB 2 – Line drawing algorithms
 
-Each file implements one line-drawing algorithm and plots the resulting pixels as large white points with PyOpenGL + GLUT (600x600 window, world coordinates -1..50 on both axes). The end points are set by the constants `X1, Y1, X2, Y2` at the top of each file – edit them to try other lines.
+Each algorithm file implements one line-drawing algorithm and plots the resulting pixels as large white points over a pixel grid with PyOpenGL + GLUT (600x600 window, world coordinates -1..50 on both axes). The end points are set by the constants `X1, Y1, X2, Y2` at the top of each file – edit them to try other lines. `compare.py` imports the algorithms and shows them together (its lines are in the `LINES` list).
 
 ## Install
 
@@ -21,8 +21,8 @@ python -m pip install PyOpenGL PyOpenGL_accelerate
 | File | Algorithm | What it does |
 |------|-----------|--------------|
 | `dda.py` | DDA (Digital Differential Analyzer) | Takes `steps = max(abs(dx), abs(dy))`, increments x and y by `dx/steps` and `dy/steps` each step, and rounds to the nearest pixel. Works for any slope/direction. Default line: (2,3) → (40,25). |
-| `direct_simple.py` | Direct method (simple) | Uses `y = m·x + b` stepping over x. Handles only the vertical special case (`x1 == x2`). Gaps appear for steep lines (`|m| > 1`). Default line: (2,3) → (40,25). |
-| `direct_checked.py` | Direct method (with slope check) | Same equation, but if `|m| <= 1` it steps x and computes y; otherwise it steps y and computes `x = x1 + (y - y1)/m`. Gives a gap-free line for any slope. Default line: (2,3) → (25,40) (steep). |
+| `direct_simple.py` | Direct method (simple) | Uses `y = m·x + b` stepping over x. Handles only the vertical special case (`x1 == x2`). Gaps appear for steep lines (`\|m\| > 1`). Default line: (2,3) → (40,25). |
+| `direct_checked.py` | Direct method (with slope check) | Same equation, but if `\|m\| <= 1` it steps x and computes y; otherwise it steps y and computes `x = x1 + (y - y1)/m`. Gives a gap-free line for any slope. Default line: (2,3) → (25,40) (steep). |
 | `bresenham.py` | Bresenham (basic) | Integer-only decision parameter `d = 2dy - dx`. Only valid for `x1 < x2` and `0 <= m <= 1`. Default line: (2,3) → (40,25). |
 | `bresenham_any.py` | Bresenham (all cases) | Generalised Bresenham: uses `abs(dx)`, `abs(dy)` and sign steps, and swaps the roles of x and y for steep lines, so every slope and direction works. Default line: (40,5) → (10,45). |
 | `compare.py` | Comparison viewer | Imports the algorithms from the other files and draws four lines on a 50x50 grid of big pixels, with the true mathematical line in orange (only when `SHOW_TRUE_LINE = True`). Keys: `1` DDA (blue), `2` Bresenham (green), `3` both, `4` direct method without slope check (gaps on steep lines), `5` direct method with slope check, `q` quit. Must be run from this folder because it imports its sibling files. |
