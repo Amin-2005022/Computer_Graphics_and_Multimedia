@@ -6,6 +6,7 @@ Python + OpenGL (PyOpenGL / GLUT) lab programs for the Computer Graphics and Mul
 | --------- | ------------------------------------------------------------------------------- |
 | `LAB_1` | First OpenGL programs: line, triangle, circle                                   |
 | `LAB_2` | Line drawing algorithms: DDA, direct method, Bresenham, and a comparison viewer |
+| `LAB_3` | Midpoint line algorithm |
 
 See the `README.md` inside each folder for a description of every file.
 
@@ -51,6 +52,15 @@ python compare.py
 `compare.py` imports the other files in `LAB_2`, so it must be run from inside that folder.
 
 Each LAB_2 file has two display switches at the top: `SHOW_GRID` (default `True`) draws the pixel grid, and `SHOW_TRUE_LINE` (default `False`) draws the ideal mathematical line in orange. Set it to `True` to see it.
+
+### LAB_3
+
+```
+cd LAB_3
+python midpoint.py
+```
+
+It has the same `SHOW_GRID` / `SHOW_TRUE_LINE` switches as LAB_2.
 
 To go back to the project root, or move from one lab to the other:
 
