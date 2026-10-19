@@ -40,6 +40,14 @@ def eight_points(xc, yc, x, y):
     # ... 7 more ...
 
     # ---------------------------------------------------------------
+    points.append((xc + x, yc + y))
+    points.append((xc - x, yc + y))
+    points.append((xc + x, yc - y))
+    points.append((xc - x, yc - y))
+    points.append((xc + y, yc + x))
+    points.append((xc - y, yc + x))
+    points.append((xc + y, yc - x))
+    points.append((xc - y, yc - x))
     
     return points
 
@@ -55,6 +63,14 @@ def midpoint_octant(r):
     #     ... decide E or SE, update p (and y), then x = x + 1 ...
 
     # ---------------------------------------------------------------
+    while x <= y:
+        octant.append((x, y))
+        if p < 0:
+            p = p + 2 * x + 3
+        else:
+            p = p + 2 * (x - y) + 5
+            y -= 1
+        x += 1
     return octant
 
 
