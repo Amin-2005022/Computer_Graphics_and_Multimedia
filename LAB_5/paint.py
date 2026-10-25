@@ -1,6 +1,6 @@
 """Lab 4 - MINI PAINT (STUDENT FILE): a drawing tool built only from our own algorithms.
 
-YOUR JOB: fill in the 3 TODO sections in the ELLIPSE part below.
+YOUR JOB: fill in the remaining TODO sections (1 and 3) in the ELLIPSE part below.
 When you run the file it first CHECKS your ellipse against the a = 8, b = 6 example
 from Lecture 6. Line, circle, pencil and fill already work: try them first.
 
@@ -114,12 +114,15 @@ def midpoint_ellipse_quadrant(a, b):
     px, py = 0, 2 * a2 * y                    # running values of 2b^2 x and 2a^2 y
     region1, region2 = [(x, y)], []
     p1 = b2 - a2 * b + 0.25 * a2              # p1_0 = b^2 - a^2 b + a^2/4
-    # ---------------- TODO 2: region 1 loop ----------------
-    # while px < py:
-    #     x += 1; px += 2 * b2
-    #     ... E or SE (when y goes down: py -= 2 * a2) ...
-    #     region1.append((x, y))
-
+    # ---------------- Region 1 loop (slope magnitude < 1) ----------------
+    while px < py:
+        x += 1; px += 2 * b2
+        if p1 < 0:                            # E
+            p1 += px + b2
+        else:                                 # SE
+            y -= 1; py -= 2 * a2
+            p1 += px - py + b2
+        region1.append((x, y))
     # --------------------------------------------------------
     p2 = b2 * (x + 0.5) ** 2 + a2 * (y - 1) ** 2 - a2 * b2   # p2_0
     # ---------------- TODO 3: region 2 loop ----------------
